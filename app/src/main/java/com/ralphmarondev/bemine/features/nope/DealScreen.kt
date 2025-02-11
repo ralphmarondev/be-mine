@@ -20,6 +20,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -69,6 +70,7 @@ fun DealScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp)
+                    .graphicsLayer(scaleX = 1.2f, scaleY = 1.2f)
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
@@ -88,7 +90,9 @@ fun DealScreen(
             ) {
                 Text(
                     text = "Okay Yes!",
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(2.dp)
                 )
             }
         }

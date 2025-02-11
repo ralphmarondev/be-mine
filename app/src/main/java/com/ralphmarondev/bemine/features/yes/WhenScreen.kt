@@ -110,7 +110,9 @@ fun WhenScreen(
             ) {
                 Text(
                     text = "Continue",
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(2.dp)
                 )
             }
         }

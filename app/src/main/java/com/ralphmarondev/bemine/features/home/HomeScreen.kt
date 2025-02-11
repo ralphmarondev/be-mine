@@ -81,7 +81,9 @@ fun HomeScreen(
                     onClick = onYes
                 ) {
                     Text(
-                        text = "Yes"
+                        text = "Yes",
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(2.dp)
                     )
                 }
 
@@ -89,7 +91,9 @@ fun HomeScreen(
                     onClick = onNope
                 ) {
                     Text(
-                        text = "No"
+                        text = "No",
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(2.dp)
                     )
                 }
             }
