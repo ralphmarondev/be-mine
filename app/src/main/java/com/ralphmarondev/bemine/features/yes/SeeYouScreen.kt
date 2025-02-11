@@ -143,7 +143,7 @@ fun SeeYouScreen(
                 fontSize = 20.sp
             )
             Text(
-                text = "You are so excited! Remember?",
+                text = "You were so excited! Remember?",
                 color = MaterialTheme.colorScheme.secondary,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
                 fontSize = 20.sp
