@@ -65,7 +65,7 @@ fun NopeFirstScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             LottieComponent(
-                path = R.raw.oh_no,
+                path = R.raw.crying,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp)
