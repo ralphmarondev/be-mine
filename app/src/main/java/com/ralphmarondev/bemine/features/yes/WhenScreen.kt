@@ -20,7 +20,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,7 +29,7 @@ import com.ralphmarondev.bemine.core.components.LottieComponent
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WhenScreen(
-    navigateBack : () -> Unit,
+    navigateBack: () -> Unit,
     onNext: () -> Unit
 ) {
     Scaffold(
