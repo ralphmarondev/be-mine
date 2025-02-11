@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.ralphmarondev.bemine.MyApp
+import com.ralphmarondev.bemine.core.preferences.AppPreferences
 import com.ralphmarondev.bemine.features.home.HomeScreen
 import com.ralphmarondev.bemine.features.nope.DealScreen
 import com.ralphmarondev.bemine.features.nope.NopeFirstScreen
@@ -17,6 +19,7 @@ import com.ralphmarondev.bemine.features.yes.YesFirstScreen
 
 @Composable
 fun AppNavigation(
+    preferences: AppPreferences = MyApp.preferences,
     navController: NavHostController = rememberNavController()
 ) {
     NavHost(
@@ -60,7 +63,8 @@ fun AppNavigation(
                     navController.navigate(Routes.Yes.Eat) {
                         launchSingleTop = true
                     }
-                }
+                },
+                preferences = preferences
             )
         }
 
@@ -73,7 +77,8 @@ fun AppNavigation(
                     navController.navigate(Routes.Yes.Watch) {
                         launchSingleTop = true
                     }
-                }
+                },
+                preferences = preferences
             )
         }
 
@@ -86,7 +91,8 @@ fun AppNavigation(
                     navController.navigate(Routes.Yes.Excited) {
                         launchSingleTop = true
                     }
-                }
+                },
+                preferences = preferences
             )
         }
 
@@ -107,7 +113,8 @@ fun AppNavigation(
             SeeYouScreen(
                 navigateBack = {
                     navController.navigateUp()
-                }
+                },
+                preferences = preferences
             )
         }
 

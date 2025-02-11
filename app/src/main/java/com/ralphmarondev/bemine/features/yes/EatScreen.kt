@@ -39,14 +39,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.ralphmarondev.bemine.R
+import com.ralphmarondev.bemine.core.preferences.AppPreferences
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EatScreen(
+    preferences: AppPreferences,
     navigateBack: () -> Unit,
     onNext: () -> Unit
 ) {
-    var selected by remember { mutableIntStateOf(-1) }
+    var selected by remember { mutableIntStateOf(preferences.getFood()) }
     val foods = listOf(
         EatModel(
             image = R.drawable.eat1_pizza,
@@ -139,7 +141,10 @@ fun EatScreen(
 
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                onClick = onNext,
+                onClick = {
+                    preferences.setFood(selected)
+                    onNext()
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)

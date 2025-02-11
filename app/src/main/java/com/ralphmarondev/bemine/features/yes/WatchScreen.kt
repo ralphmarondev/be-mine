@@ -39,14 +39,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.ralphmarondev.bemine.R
+import com.ralphmarondev.bemine.core.preferences.AppPreferences
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WatchScreen(
+    preferences: AppPreferences,
     navigateBack: () -> Unit,
     onNext: () -> Unit
 ) {
-    var selected by remember { mutableIntStateOf(-1) }
+    var selected by remember { mutableIntStateOf(preferences.getMovie()) }
     val movies = listOf(
         MovieModel(
             image = R.drawable.watch4_animated,
@@ -139,7 +141,10 @@ fun WatchScreen(
 
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                onClick = onNext,
+                onClick = {
+                    preferences.setMovie(selected)
+                    onNext()
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)

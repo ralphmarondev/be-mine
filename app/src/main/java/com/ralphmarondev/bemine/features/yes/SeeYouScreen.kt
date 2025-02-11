@@ -23,10 +23,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ralphmarondev.bemine.R
 import com.ralphmarondev.bemine.core.components.LottieComponent
+import com.ralphmarondev.bemine.core.preferences.AppPreferences
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SeeYouScreen(
+    preferences: AppPreferences,
     navigateBack: () -> Unit
 ) {
     data class Summary(
@@ -36,9 +38,21 @@ fun SeeYouScreen(
     )
 
     val summary = Summary(
-        time = "7:00PM",
-        food = "Shushi",
-        movie = "Sci-fi"
+        time = preferences.getTime(),
+        food = when (preferences.getFood()) {
+            0 -> "Pizza"
+            1 -> "Burger"
+            2 -> "Sushi"
+            3 -> "Pasta"
+            else -> "Pizza"
+        },
+        movie = when (preferences.getMovie()) {
+            0 -> "Animated"
+            1 -> "Action"
+            2 -> "Sci-Fi"
+            3 -> "Horror"
+            else -> "Sci-Fi"
+        }
     )
 
 

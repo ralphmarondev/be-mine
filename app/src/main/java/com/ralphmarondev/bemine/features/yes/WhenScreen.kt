@@ -33,16 +33,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ralphmarondev.bemine.R
 import com.ralphmarondev.bemine.core.components.LottieComponent
+import com.ralphmarondev.bemine.core.preferences.AppPreferences
 import java.util.Calendar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WhenScreen(
+    preferences: AppPreferences,
     navigateBack: () -> Unit,
     onNext: () -> Unit
 ) {
     val context = LocalContext.current
-    var selectedTime by remember { mutableStateOf("Select Time") }
+    var selectedTime by remember { mutableStateOf(preferences.getTime()) }
 
     Scaffold(
         topBar = {
@@ -103,7 +105,10 @@ fun WhenScreen(
 
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                onClick = onNext,
+                onClick = {
+                    preferences.setTime(selectedTime)
+                    onNext()
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
