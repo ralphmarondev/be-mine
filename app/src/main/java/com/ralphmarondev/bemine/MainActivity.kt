@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.ralphmarondev.bemine.features.home.HomeScreen
+import com.ralphmarondev.bemine.navigation.AppNavigation
 import com.ralphmarondev.bemine.ui.theme.BeMineTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BeMineTheme {
-                HomeScreen()
+                AppNavigation()
             }
         }
     }
