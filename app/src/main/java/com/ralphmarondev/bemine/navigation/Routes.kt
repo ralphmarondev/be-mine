@@ -28,7 +28,12 @@ object Routes {
         data object SeeYou
     }
 
+    @Serializable
     object Nope {
+        @Serializable
+        data object OhNo
 
+        @Serializable
+        data object Deal
     }
 }

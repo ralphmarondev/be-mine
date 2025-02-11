@@ -6,6 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ralphmarondev.bemine.features.home.HomeScreen
+import com.ralphmarondev.bemine.features.nope.DealScreen
+import com.ralphmarondev.bemine.features.nope.NopeFirstScreen
 import com.ralphmarondev.bemine.features.yes.EatScreen
 import com.ralphmarondev.bemine.features.yes.ExcitedScreen
 import com.ralphmarondev.bemine.features.yes.SeeYouScreen
@@ -29,7 +31,9 @@ fun AppNavigation(
                     }
                 },
                 onNope = {
-
+                    navController.navigate(Routes.Nope.OhNo) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }
@@ -103,6 +107,31 @@ fun AppNavigation(
             SeeYouScreen(
                 navigateBack = {
                     navController.navigateUp()
+                }
+            )
+        }
+
+        composable<Routes.Nope.OhNo> {
+            NopeFirstScreen(
+                navigateBack = {
+                    navController.navigateUp()
+                },
+                onNext = {
+                    navController.navigate(Routes.Nope.Deal) {
+                        launchSingleTop = true
+                    }
+                }
+            )
+        }
+        composable<Routes.Nope.Deal> {
+            DealScreen(
+                navigateBack = {
+                    navController.navigateUp()
+                },
+                onNext = {
+                    navController.navigate(Routes.Yes.Yay) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }
