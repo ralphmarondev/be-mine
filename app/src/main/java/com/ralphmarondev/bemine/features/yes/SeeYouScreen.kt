@@ -19,6 +19,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ralphmarondev.bemine.R
@@ -85,8 +89,7 @@ fun SeeYouScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
-//            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(innerPadding)
         ) {
             LottieComponent(
                 path = R.raw.see_you,
@@ -97,13 +100,44 @@ fun SeeYouScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Don't forget our date on February 14, 2025 at ${summary.time}",
+                text = buildAnnotatedString {
+                    append("Don't forget our date on February 14, 2025 at ")
+                    withStyle(
+                        style = SpanStyle(
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.W600
+                        )
+                    ) {
+                        append(summary.time)
+                    }
+                    append("!")
+                },
                 color = MaterialTheme.colorScheme.secondary,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
                 fontSize = 20.sp
             )
             Text(
-                text = "We will eat ${summary.food}. Then, we will watch ${summary.movie} movies!",
+                text = buildAnnotatedString {
+                    append("We will eat ")
+                    withStyle(
+                        style = SpanStyle(
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.W600
+                        )
+                    ) {
+                        append(summary.food)
+                    }
+                    append(". Then, we will watch ")
+                    withStyle(
+                        style = SpanStyle(
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.W600
+                        )
+                    ) {
+                        append(summary.movie)
+                    }
+                    append(" movies!")
+                },
                 color = MaterialTheme.colorScheme.secondary,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
                 fontSize = 20.sp

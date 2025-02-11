@@ -136,11 +136,15 @@ fun showTimePicker(
     TimePickerDialog(
         context,
         { _, selectedHour, selectedMinute ->
-            val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+            val isPm = selectedHour >= 12
+            val hour12 = if(selectedHour % 12 == 0) 12 else selectedHour % 12
+            val period = if(isPm) "PM" else "AM"
+
+            val formattedTime = String.format("%02d:%02d %s", hour12, selectedMinute, period)
             onTimeSelected(formattedTime)
         },
         hour,
         minute,
-        true
+        false
     ).show()
 }
