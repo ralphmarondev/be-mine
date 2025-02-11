@@ -1,5 +1,8 @@
 package com.ralphmarondev.bemine.features.yes
 
+import android.annotation.SuppressLint
+import android.app.TimePickerDialog
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,13 +21,19 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ralphmarondev.bemine.R
 import com.ralphmarondev.bemine.core.components.LottieComponent
+import java.util.Calendar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,6 +41,9 @@ fun WhenScreen(
     navigateBack: () -> Unit,
     onNext: () -> Unit
 ) {
+    val context = LocalContext.current
+    var selectedTime by remember { mutableStateOf("Select Time") }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -72,12 +84,22 @@ fun WhenScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Pick a time for the date!",
+                text = "Pick a time for our date!",
                 color = MaterialTheme.colorScheme.secondary,
                 modifier = Modifier.padding(16.dp),
                 textAlign = TextAlign.Center,
                 fontSize = 20.sp
             )
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(
+                onClick = {
+                    showTimePicker(context) { time -> selectedTime = time }
+                }
+            ) {
+                Text(
+                    text = selectedTime
+                )
+            }
 
             Spacer(modifier = Modifier.weight(1f))
             Button(
@@ -93,4 +115,25 @@ fun WhenScreen(
             }
         }
     }
+}
+
+@SuppressLint("DefaultLocale")
+fun showTimePicker(
+    context: Context,
+    onTimeSelected: (String) -> Unit
+) {
+    val calendar = Calendar.getInstance()
+    val hour = calendar.get(Calendar.HOUR_OF_DAY)
+    val minute = calendar.get(Calendar.MINUTE)
+
+    TimePickerDialog(
+        context,
+        { _, selectedHour, selectedMinute ->
+            val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+            onTimeSelected(formattedTime)
+        },
+        hour,
+        minute,
+        true
+    ).show()
 }
