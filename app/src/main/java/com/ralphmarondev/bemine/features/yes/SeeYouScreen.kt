@@ -17,9 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ralphmarondev.bemine.R
@@ -30,6 +29,19 @@ import com.ralphmarondev.bemine.core.components.LottieComponent
 fun SeeYouScreen(
     navigateBack: () -> Unit
 ) {
+    data class Summary(
+        val time: String,
+        val food: String,
+        val movie: String
+    )
+
+    val summary = Summary(
+        time = "7:00PM",
+        food = "Shushi",
+        movie = "Sci-fi"
+    )
+
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -60,20 +72,32 @@ fun SeeYouScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally
+//            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             LottieComponent(
                 path = R.raw.see_you,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp)
+                    .graphicsLayer(scaleX = 2f, scaleY = 2f)
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Summary of choices.",
+                text = "Don't forget our date on February 14, 2025 at ${summary.time}",
                 color = MaterialTheme.colorScheme.secondary,
-                modifier = Modifier.padding(16.dp),
-                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+                fontSize = 20.sp
+            )
+            Text(
+                text = "We will eat ${summary.food}. Then, we will watch ${summary.movie} movies!",
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+                fontSize = 20.sp
+            )
+            Text(
+                text = "You are so excited! Remember?",
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
                 fontSize = 20.sp
             )
         }
