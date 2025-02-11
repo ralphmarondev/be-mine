@@ -19,8 +19,7 @@ fun AppNavigation(
 ) {
     NavHost(
         navController = navController,
-//        startDestination = Routes.Home
-        startDestination = Routes.Yes.Eat
+        startDestination = Routes.Home
     ) {
         composable<Routes.Home> {
             HomeScreen(
